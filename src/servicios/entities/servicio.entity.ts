@@ -14,5 +14,9 @@ export class Servicio {
   @Column()
   imagenUrl: string;
 
-  //Relacion:
+  //Relacion con Landing:
+  //@ManyToOne(() => Landing, (landing) => landing.servicios, {
+  //  eager: true,
+  //})
+  //landing: Landing;
 }
