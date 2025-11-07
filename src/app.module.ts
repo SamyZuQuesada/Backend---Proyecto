@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LandingModule } from './landing/landing.module';
 import { TestimoniosModule } from './testimonios/testimonios.module';
 import { ServiciosModule } from './servicios/servicios.module';
-import { Testimonios } from './users/entities/testimonio.entity';
+import { Testimonios } from './testimonios/entities/testimonio.entity';
 
 @Module({
   imports: [

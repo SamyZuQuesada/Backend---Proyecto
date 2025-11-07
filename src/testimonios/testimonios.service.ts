@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateTestimonioDto } from './dto/update-testimonio.dto';
-import { Testimonio } from './entities/testimonio.entity';
+import { UpdateTestimonioDto } from './DTO/update-testimonio.dto';
+import { Testimonios } from './entities/testimonio.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UpdateResult } from 'typeorm/browser';
@@ -8,11 +8,11 @@ import { UpdateResult } from 'typeorm/browser';
 @Injectable()
 export class TestimoniosService {
   constructor(
-    @InjectRepository(Testimonio)
-    private testimoniosRepository: Repository<Testimonio>, //inyeccion de dependencias 
+    @InjectRepository(Testimonios)
+    private testimoniosRepository: Repository<Testimonios>, //inyeccion de dependencias 
   ) {}
 
-  getTestimonios(): Promise<Testimonio[]> {
+  getTestimonios(): Promise<Testimonios[]> {
     const testimonios = this.testimoniosRepository.find();
     return testimonios;
   }

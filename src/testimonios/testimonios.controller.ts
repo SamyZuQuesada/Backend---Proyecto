@@ -1,6 +1,6 @@
 import { Controller, Get, Body, Patch, Param } from '@nestjs/common';
 import { TestimoniosService } from './testimonios.service';
-import { UpdateTestimonioDto } from './dto/update-testimonio.dto';
+import { UpdateTestimonioDto } from './DTO/update-testimonio.dto';
 
 @Controller('testimonios')
 export class TestimoniosController {
