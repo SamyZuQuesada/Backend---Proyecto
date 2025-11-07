@@ -15,7 +15,7 @@ import { Testimonios } from './testimonios/entities/testimonio.entity';
       port: 3306,
       username: 'root',
       password: '1234',
-      database: 'nestapi', //cambiar esto
+      database: 'nestapi',
       entities: [Testimonios],
       synchronize: true,
     }),

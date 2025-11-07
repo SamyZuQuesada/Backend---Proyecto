@@ -9,7 +9,7 @@ import { UpdateResult } from 'typeorm/browser';
 export class TestimoniosService {
   constructor(
     @InjectRepository(Testimonios)
-    private testimoniosRepository: Repository<Testimonios>, //inyeccion de dependencias 
+    private testimoniosRepository: Repository<Testimonios>, //inyeccion de dependencias
   ) {}
 
   getTestimonios(): Promise<Testimonios[]> {

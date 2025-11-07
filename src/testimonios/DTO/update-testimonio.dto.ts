@@ -1,8 +1,9 @@
-import{IsString}
-export class UpdateTestimonioDto{
-    @IsString()
-    name: string;
+import { IsString } from 'class-validator';
 
-    @IsString()
-    description: string;
+export class UpdateTestimonioDto {
+  @IsString()
+  name: string;
+
+  @IsString()
+  description: string;
 }
