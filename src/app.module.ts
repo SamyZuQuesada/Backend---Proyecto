@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { LandingModule } from './landing/landing.module';
 import { TestimoniosModule } from './testimonios/testimonios.module';
 import { ServiciosModule } from './servicios/servicios.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Testimonios } from './users/entities/testimonio.entity';
 
 @Module({
   imports: [
@@ -13,9 +14,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'hys14072019',
-      database: 'test',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      password: '1234',
+      database: 'nestapi', //cambiar esto
+      entities: [Testimonios],
       synchronize: true,
     }),
     LandingModule,
