@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { LandingModule } from './landing/landing.module';
 import { TestimoniosModule } from './testimonios/testimonios.module';
 import { ServiciosModule } from './servicios/servicios.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Servicio } from './servicios/entities/servicio.entity';
 import { Landing } from './landing/entities/landing.entity';
-import { Testimonio } from './testimonios/entities/testimonio.entity';
+import { Testimonios } from './testimonios/entities/testimonio.entity';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { Testimonio } from './testimonios/entities/testimonio.entity';
       username: 'root',
       password: 'hys14072019',
       database: 'test',
-      entities: [Servicio, Landing, Testimonio],
+      entities: [Servicio, Landing, Testimonios],
       synchronize: true,
     }),
     LandingModule,
