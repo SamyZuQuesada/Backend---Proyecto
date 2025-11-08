@@ -3,7 +3,7 @@ import { UpdateTestimonioDto } from './DTO/update-testimonio.dto';
 import { Testimonios } from './entities/testimonio.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UpdateResult } from 'typeorm/browser';
+import { UpdateResult } from 'typeorm';
 
 @Injectable()
 export class TestimoniosService {
@@ -20,10 +20,10 @@ export class TestimoniosService {
     id: number,
     updateTestimonioDto: UpdateTestimonioDto,
   ): Promise<UpdateResult> {
-    const userUpdated = await this.testimoniosRepository.update(
+    const commentUpdated = await this.testimoniosRepository.update(
       id,
       updateTestimonioDto,
     );
-    return userUpdated;
+    return commentUpdated;
   }
 }
