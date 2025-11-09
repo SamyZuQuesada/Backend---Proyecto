@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+// src/servicios/entities/servicio.entity.ts
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Landing } from '../../landing/entities/landing.entity';
 
 @Entity()
 export class Servicio {
@@ -14,9 +22,7 @@ export class Servicio {
   @Column()
   imagenUrl: string;
 
-  //Relacion con Landing:
-  //@ManyToOne(() => Landing, (landing) => landing.servicios, {
-  //  eager: true,
-  //})
-  //landing: Landing;
+  @ManyToOne(() => Landing, (landing) => landing.servicios)
+  @JoinColumn({ name: 'landingId' })
+  landing: Landing;
 }

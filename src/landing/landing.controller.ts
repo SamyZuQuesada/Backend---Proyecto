@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { LandingService } from './landing.service';
 
 @Controller('landing')
-export class LandingController {}
+export class LandingController {
+  constructor(private readonly landingService: LandingService) {}
+
+  @Get()
+  async getLanding() {
+    return await this.landingService.findOneWithRelations();
+  }
+}

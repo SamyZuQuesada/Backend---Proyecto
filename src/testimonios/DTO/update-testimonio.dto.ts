@@ -1,9 +1,15 @@
-import { IsString } from 'class-validator';
+import { IsString, IsOptional } from 'class-validator'; //hay que ejecutar  "npm install class-validator class-transformer para que esto funcione"
 
 export class UpdateTestimonioDto {
-  @IsString()
-  name: string;
+  @IsOptional()
+  @IsString() //si las validaciones siguen dando errores se pueden borrar
+  name?: string;
 
+  @IsOptional()
   @IsString()
-  description: string;
+  description?: string;
+
+  @IsOptional()
+  @IsString()
+  date?: string;
 }

@@ -1,21 +1,34 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-@Entity()
+// src/testimonios/entities/testimonio.entity.ts
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Landing } from '../../landing/entities/landing.entity';
+
+@Entity('testimonios')
 export class Testimonios {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ name: 'name' })
   name: string;
 
-  @Column()
+  @Column({ name: 'description' })
   description: string;
 
-  @Column()
+  @Column({ name: 'date' })
   date: string;
 
-  @Column()
+  @Column({ name: 'clientAvatar' })
   clientAvatar: string;
 
-  @Column()
-  rating: string;
+  @Column({ name: 'rating' })
+  rating: number;
+
+  @ManyToOne(() => Landing, (landing) => landing.testimonios)
+  @JoinColumn({ name: 'landingId' })
+  landing: Landing;
 }

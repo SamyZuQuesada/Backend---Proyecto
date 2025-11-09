@@ -6,6 +6,8 @@ import { LandingModule } from './landing/landing.module';
 import { TestimoniosModule } from './testimonios/testimonios.module';
 import { ServiciosModule } from './servicios/servicios.module';
 import { Testimonios } from './testimonios/entities/testimonio.entity';
+import { Landing } from './landing/entities/landing.entity';
+import { Servicio } from './servicios/entities/servicio.entity';
 
 @Module({
   imports: [
@@ -14,9 +16,9 @@ import { Testimonios } from './testimonios/entities/testimonio.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '1234',
+      password: '12345',
       database: 'nestapi',
-      entities: [Testimonios],
+      entities: [Landing, Servicio, Testimonios],
       synchronize: true,
     }),
     LandingModule,
