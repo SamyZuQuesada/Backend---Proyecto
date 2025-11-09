@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { LandingService } from './landing.service';
 import { Landing } from './entities/landing.entity';
 
@@ -20,5 +28,10 @@ export class LandingController {
   @Put(':id')
   updateLanding(@Param('id') id: number, @Body() landing: Landing) {
     return this.landingService.updateLanding(id, landing);
+  }
+
+  @Delete(':id')
+  deleteLanding(@Param('id') id: number): string {
+    return this.landingService.deleteLanding(id);
   }
 }

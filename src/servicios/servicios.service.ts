@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Servicio } from './entities/servicio.entity';
@@ -25,5 +26,10 @@ export class ServiciosService {
   async updateServicio(id: number, servicio: Servicio): Promise<UpdateResult> {
     const servicioUpdate = await this.servicioRepository.update(id, servicio);
     return servicioUpdate;
+  }
+
+  deleteServicio(id: number): string {
+    this.servicioRepository.delete(id);
+    return `Servicio con id ${id} eliminado`;
   }
 }

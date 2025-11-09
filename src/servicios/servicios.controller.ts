@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ServiciosService } from './servicios.service';
 import { Servicio } from './entities/servicio.entity';
 
@@ -23,5 +31,10 @@ export class ServiciosController {
     @Body() servicio: Servicio,
   ): Promise<any> {
     return this.serviciosService.updateServicio(id, servicio);
+  }
+
+  @Delete(':id')
+  deleteServicio(@Param('id') id: number): string {
+    return this.serviciosService.deleteServicio(id);
   }
 }

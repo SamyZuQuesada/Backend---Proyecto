@@ -12,16 +12,14 @@ export class Testimonios {
   description: string;
 
   @Column()
-  date: string;
-
-  @Column()
-  clientAvatar: string;
-
-  @Column()
   rating: string;
+
+  @Column()
+  avatarUrl: string;
+
   //Relacion:
   @ManyToOne(() => Landing, (landing) => landing.testimonios, {
-    eager: true,
+    cascade: true,
   })
   landing: Landing;
 }

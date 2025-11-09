@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Landing } from './entities/landing.entity';
@@ -11,7 +12,7 @@ export class LandingService {
 
   async getLanding(): Promise<Landing[]> {
     const landing = this.landingRepository.find({
-      relations: ['services', 'testimonials'],
+      relations: ['servicios', 'testimonios'],
     });
     return landing;
   }
@@ -25,5 +26,10 @@ export class LandingService {
   async updateLanding(id: number, landing: Landing): Promise<UpdateResult> {
     const landingUpdated = await this.landingRepository.update(id, landing);
     return landingUpdated;
+  }
+
+  deleteLanding(id: number): string {
+    this.landingRepository.delete(id);
+    return `Landing con id ${id} eliminado`;
   }
 }

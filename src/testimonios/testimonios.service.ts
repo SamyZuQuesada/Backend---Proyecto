@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { Injectable } from '@nestjs/common';
 import { Testimonios } from './entities/testimonio.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -32,5 +33,10 @@ export class TestimoniosService {
       testimonio,
     );
     return testimonioUpdate;
+  }
+
+  deleteTestimonio(id: number): string {
+    this.testimoniosRepository.delete(id);
+    return `Testimonio con id ${id} eliminado`;
   }
 }
