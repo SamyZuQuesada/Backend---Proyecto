@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateTestimonioDto } from './DTO/update-testimonio.dto';
 import { Testimonios } from './entities/testimonio.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -16,14 +15,15 @@ export class TestimoniosService {
     const testimonios = this.testimoniosRepository.find();
     return testimonios;
   }
+
   async updateTestimonio(
     id: number,
-    updateTestimonioDto: UpdateTestimonioDto,
+    testimonio: Testimonios,
   ): Promise<UpdateResult> {
-    const commentUpdated = await this.testimoniosRepository.update(
+    const testimonioUpdate = await this.testimoniosRepository.update(
       id,
-      updateTestimonioDto,
+      testimonio,
     );
-    return commentUpdated;
+    return testimonioUpdate;
   }
 }

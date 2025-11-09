@@ -1,10 +1,16 @@
-import { Body, Controller, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { ServiciosService } from './servicios.service';
 import { Servicio } from './entities/servicio.entity';
 
 @Controller('servicios')
 export class ServiciosController {
   constructor(private readonly serviciosService: ServiciosService) {}
+
+  @Get()
+  getServicios(): Promise<Servicio[]> {
+    const serviciosList = this.serviciosService.getServicios();
+    return serviciosList;
+  }
 
   @Put(':id')
   updateServicio(

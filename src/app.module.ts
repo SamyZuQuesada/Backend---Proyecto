@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LandingModule } from './landing/landing.module';
 import { TestimoniosModule } from './testimonios/testimonios.module';
 import { ServiciosModule } from './servicios/servicios.module';
+import { Servicio } from './servicios/entities/servicio.entity';
+import { Landing } from './landing/entities/landing.entity';
 import { Testimonios } from './testimonios/entities/testimonio.entity';
 
 @Module({
@@ -16,7 +18,7 @@ import { Testimonios } from './testimonios/entities/testimonio.entity';
       username: 'root',
       password: '1234',
       database: 'nestapi',
-      entities: [Testimonios],
+      entities: [Servicio, Landing, Testimonios],
       synchronize: true,
     }),
     LandingModule,

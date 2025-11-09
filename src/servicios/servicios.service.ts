@@ -11,6 +11,11 @@ export class ServiciosService {
     private servicioRepository: Repository<Servicio>,
   ) {}
 
+  getServicios(): Promise<Servicio[]> {
+    const servicios = this.servicioRepository.find();
+    return servicios;
+  }
+
   async updateServicio(id: number, servicio: Servicio): Promise<UpdateResult> {
     const servicioUpdate = await this.servicioRepository.update(id, servicio);
     return servicioUpdate;
