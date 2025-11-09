@@ -13,6 +13,7 @@ export class LandingService {
   getLanding(): Promise<Landing[]> {
     const landing = this.landingRepository.find({
       relations: ['servicios', 'testimonios'],
+      where: { id: 1 },
     });
     return landing;
   }

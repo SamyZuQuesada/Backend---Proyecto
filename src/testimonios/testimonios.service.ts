@@ -11,6 +11,11 @@ export class TestimoniosService {
     private testimoniosRepository: Repository<Testimonios>, //inyeccion de dependencias
   ) {}
 
+  getTestimonios(): Promise<Testimonios[]> {
+    const testimonios = this.testimoniosRepository.find();
+    return testimonios;
+  }
+
   async updateTestimonio(
     id: number,
     testimonio: Testimonios,
