@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Landing } from 'src/landing/entities/landing.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Testimonios {
   @PrimaryGeneratedColumn()
@@ -18,4 +19,7 @@ export class Testimonios {
 
   @Column()
   rating: string;
+  //Relacion:
+  @ManyToOne(() => Landing, (landing) => landing.testimonios)
+  landing: Landing;
 }

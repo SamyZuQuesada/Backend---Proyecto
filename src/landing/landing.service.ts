@@ -12,7 +12,7 @@ export class LandingService {
   //Leer el landing con los servicios y testimonios
   getLanding(): Promise<Landing[]> {
     const landing = this.landingRepository.find({
-      relations: ['servicios'], //agregar la relacion con testimonios
+      relations: ['servicios', 'testimonios'],
     });
     return landing;
   }

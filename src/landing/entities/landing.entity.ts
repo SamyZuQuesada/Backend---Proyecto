@@ -1,4 +1,5 @@
 import { Servicio } from 'src/servicios/entities/servicio.entity';
+import { Testimonios } from 'src/testimonios/entities/testimonio.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -22,4 +23,8 @@ export class Landing {
   servicios: Servicio[];
 
   //Testimonios:
+  @OneToMany(() => Testimonios, (testimonio) => testimonio.landing, {
+    cascade: true,
+  })
+  testimonios: Testimonios[];
 }
