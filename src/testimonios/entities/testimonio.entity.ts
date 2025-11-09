@@ -15,8 +15,6 @@ export class Testimonios {
   date: string;
 
   //Relacion:
-  @ManyToOne(() => Landing, (landing) => landing.testimonios, {
-    eager: true,
-  })
+  @ManyToOne(() => Landing, (landing) => landing.testimonios)
   landing: Landing;
 }
