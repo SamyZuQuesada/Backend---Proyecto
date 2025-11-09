@@ -10,11 +10,14 @@ export class LandingService {
   ) {}
 
   //Leer el landing con los servicios y testimonios
-  getLanding(): Promise<Landing[]> {
-    const landing = this.landingRepository.find({
+  async getLanding(): Promise<Landing> {
+    const landing = await this.landingRepository.findOne({
       relations: ['servicios', 'testimonios'],
       where: { id: 1 },
     });
+    if (!landing) {
+      throw new Error('Landing no encontrado');
+    }
     return landing;
   }
 

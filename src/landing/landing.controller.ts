@@ -7,9 +7,8 @@ export class LandingController {
   constructor(private readonly landingService: LandingService) {}
 
   @Get() // Endpoint para obtener el landing con servicios y testimonios
-  getLanding(): Promise<Landing[]> {
-    const landingList = this.landingService.getLanding();
-    return landingList;
+  getLanding(): Promise<Landing> {
+    return this.landingService.getLanding();
   }
 
   @Put(':id')

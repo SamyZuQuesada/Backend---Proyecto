@@ -20,6 +20,8 @@ export class Testimonios {
   @Column()
   rating: string;
   //Relacion:
-  @ManyToOne(() => Landing, (landing) => landing.testimonios)
+  @ManyToOne(() => Landing, (landing) => landing.testimonios, {
+    eager: true,
+  })
   landing: Landing;
 }
