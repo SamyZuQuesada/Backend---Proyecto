@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { LandingService } from './landing.service';
 import { Landing } from './entities/landing.entity';
 
@@ -6,9 +6,15 @@ import { Landing } from './entities/landing.entity';
 export class LandingController {
   constructor(private readonly landingService: LandingService) {}
 
-  @Get() // Endpoint para obtener el landing con servicios y testimonios
-  getLanding(): Promise<Landing> {
-    return this.landingService.getLanding();
+  @Get()
+  getLanding(): Promise<Landing[]> {
+    const landingList = this.landingService.getLanding();
+    return landingList;
+  }
+
+  @Post()
+  createLanding(@Body() landing: Landing): Promise<Landing> {
+    return this.landingService.createLanding(landing);
   }
 
   @Put(':id')

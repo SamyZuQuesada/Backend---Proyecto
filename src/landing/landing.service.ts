@@ -9,16 +9,17 @@ export class LandingService {
     @InjectRepository(Landing) private landingRepository: Repository<Landing>,
   ) {}
 
-  //Leer el landing con los servicios y testimonios
-  async getLanding(): Promise<Landing> {
-    const landing = await this.landingRepository.findOne({
-      relations: ['servicios', 'testimonios'],
-      where: { id: 1 },
+  async getLanding(): Promise<Landing[]> {
+    const landing = this.landingRepository.find({
+      relations: ['services', 'testimonials'],
     });
-    if (!landing) {
-      throw new Error('Landing no encontrado');
-    }
     return landing;
+  }
+
+  async createLanding(landing: Landing): Promise<Landing> {
+    const newLanding = this.landingRepository.create(landing);
+    const landingCreated = await this.landingRepository.save(newLanding);
+    return landingCreated;
   }
 
   async updateLanding(id: number, landing: Landing): Promise<UpdateResult> {

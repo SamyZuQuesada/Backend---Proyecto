@@ -16,6 +16,12 @@ export class ServiciosService {
     return servicios;
   }
 
+  async createServicio(servicio: Servicio): Promise<Servicio> {
+    const newServicio = this.servicioRepository.create(servicio);
+    const servicioCreated = await this.servicioRepository.save(newServicio);
+    return servicioCreated;
+  }
+
   async updateServicio(id: number, servicio: Servicio): Promise<UpdateResult> {
     const servicioUpdate = await this.servicioRepository.update(id, servicio);
     return servicioUpdate;

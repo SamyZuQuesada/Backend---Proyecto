@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ServiciosService } from './servicios.service';
 import { Servicio } from './entities/servicio.entity';
 
@@ -10,6 +10,11 @@ export class ServiciosController {
   getServicios(): Promise<Servicio[]> {
     const serviciosList = this.serviciosService.getServicios();
     return serviciosList;
+  }
+
+  @Post()
+  createServicio(@Body() servicio: Servicio): Promise<Servicio> {
+    return this.serviciosService.createServicio(servicio);
   }
 
   @Put(':id')

@@ -16,6 +16,13 @@ export class TestimoniosService {
     return testimonios;
   }
 
+  async createTestimonio(testimonio: Testimonios): Promise<Testimonios> {
+    const newTestimonio = this.testimoniosRepository.create(testimonio);
+    const testimonioCreated =
+      await this.testimoniosRepository.save(newTestimonio);
+    return testimonioCreated;
+  }
+
   async updateTestimonio(
     id: number,
     testimonio: Testimonios,
