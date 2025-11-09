@@ -22,12 +22,6 @@ export class Testimonios {
   @Column({ name: 'date' })
   date: string;
 
-  @Column({ name: 'clientAvatar' })
-  clientAvatar: string;
-
-  @Column({ name: 'rating' })
-  rating: number;
-
   @ManyToOne(() => Landing, (landing) => landing.testimonios)
   @JoinColumn({ name: 'landingId' })
   landing: Landing;
