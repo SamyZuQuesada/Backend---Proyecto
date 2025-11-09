@@ -12,10 +12,4 @@ export class Testimonios {
 
   @Column()
   date: string;
-
-  @Column()
-  clientAvatar: string;
-
-  @Column()
-  rating: string;
 }

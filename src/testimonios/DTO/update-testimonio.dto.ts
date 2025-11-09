@@ -1,5 +1,4 @@
-import { IsString } from 'class-validator'; //hay que ejecutar  "npm install class-validator class-transformer para que esto funcione"
-import { IsOptional } 
+import { IsString, IsOptional } from 'class-validator'; //hay que ejecutar  "npm install class-validator class-transformer para que esto funcione"
 
 export class UpdateTestimonioDto {
   @IsOptional()
@@ -9,4 +8,8 @@ export class UpdateTestimonioDto {
   @IsOptional()
   @IsString()
   description?: string;
+
+  @IsOptional()
+  @IsString()
+  date?: string;
 }
