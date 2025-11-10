@@ -6,35 +6,35 @@ import {
   Get,
   Post,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { TestimoniosService } from './testimonios.service';
 import { Testimonios } from './entities/testimonio.entity';
+import { UpdateResult } from 'typeorm';
 
 @Controller('testimonios')
 export class TestimoniosController {
   constructor(private readonly testimoniosService: TestimoniosService) {}
 
   @Get()
-  getTestimonios(): Promise<Testimonios[]> {
-    const testimoniosList = this.testimoniosService.getTestimonios();
-    return testimoniosList;
+  findAll() {
+    return this.testimoniosService.findAll();
   }
 
   @Post()
-  createTestimonio(@Body() testimonio: Testimonios): Promise<Testimonios> {
-    return this.testimoniosService.createTestimonio(testimonio);
+  createTestimonio(@Body() body: any): Promise<Testimonios> {
+    return this.testimoniosService.createTestimonio(body);
   }
-
   @Put(':id')
   updateTestimonio(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() testimonio: Testimonios,
-  ): Promise<any> {
+  ): Promise<UpdateResult> {
     return this.testimoniosService.updateTestimonio(id, testimonio);
   }
 
   @Delete(':id')
-  deleteTestimonio(@Param('id') id: number): string {
+  deleteTestimonio(@Param('id', ParseIntPipe) id: number): string {
     return this.testimoniosService.deleteTestimonio(id);
   }
 }

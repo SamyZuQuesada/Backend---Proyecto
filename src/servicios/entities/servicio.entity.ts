@@ -16,7 +16,7 @@ export class Servicio {
 
   //Relacion con Landing:
   @ManyToOne(() => Landing, (landing) => landing.servicios, {
-    cascade: true,
+    eager: true,
   })
   landing: Landing;
 }

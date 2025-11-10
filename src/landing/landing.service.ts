@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Landing } from './entities/landing.entity';
 import { Repository, UpdateResult } from 'typeorm';
@@ -10,13 +10,24 @@ export class LandingService {
     @InjectRepository(Landing) private landingRepository: Repository<Landing>,
   ) {}
 
-  async getLanding(): Promise<Landing[]> {
-    const landing = this.landingRepository.find({
+  async findAll(): Promise<Landing[]> {
+    return await this.landingRepository.find({
       relations: ['servicios', 'testimonios'],
     });
-    return landing;
   }
 
+  async findOne(id: number): Promise<Landing> {
+    const landing = await this.landingRepository.findOne({
+      where: { id },
+      relations: ['servicios', 'testimonios'],
+    });
+
+    if (!landing) {
+      throw new NotFoundException(`Landing con ID ${id} no encontrado`);
+    }
+
+    return landing;
+  }
   async createLanding(landing: Landing): Promise<Landing> {
     const newLanding = this.landingRepository.create(landing);
     const landingCreated = await this.landingRepository.save(newLanding);

@@ -4,37 +4,38 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
 import { ServiciosService } from './servicios.service';
 import { Servicio } from './entities/servicio.entity';
+import { UpdateResult } from 'typeorm';
 
 @Controller('servicios')
 export class ServiciosController {
   constructor(private readonly serviciosService: ServiciosService) {}
 
   @Get()
-  getServicios(): Promise<Servicio[]> {
-    const serviciosList = this.serviciosService.getServicios();
-    return serviciosList;
+  findAll() {
+    return this.serviciosService.findAll();
   }
 
   @Post()
-  createServicio(@Body() servicio: Servicio): Promise<Servicio> {
-    return this.serviciosService.createServicio(servicio);
+  createServicio(@Body() body: any): Promise<Servicio> {
+    return this.serviciosService.createServicio(body);
   }
 
   @Put(':id')
   updateServicio(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() servicio: Servicio,
-  ): Promise<any> {
+  ): Promise<UpdateResult> {
     return this.serviciosService.updateServicio(id, servicio);
   }
 
   @Delete(':id')
-  deleteServicio(@Param('id') id: number): string {
+  deleteServicio(@Param('id', ParseIntPipe) id: number): string {
     return this.serviciosService.deleteServicio(id);
   }
 }

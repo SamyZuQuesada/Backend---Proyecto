@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
@@ -15,9 +16,13 @@ export class LandingController {
   constructor(private readonly landingService: LandingService) {}
 
   @Get()
-  getLanding(): Promise<Landing[]> {
-    const landingList = this.landingService.getLanding();
-    return landingList;
+  findAll() {
+    return this.landingService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.landingService.findOne(id);
   }
 
   @Post()
@@ -26,12 +31,15 @@ export class LandingController {
   }
 
   @Put(':id')
-  updateLanding(@Param('id') id: number, @Body() landing: Landing) {
+  updateLanding(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() landing: Landing,
+  ) {
     return this.landingService.updateLanding(id, landing);
   }
 
   @Delete(':id')
-  deleteLanding(@Param('id') id: number): string {
+  deleteLanding(@Param('id', ParseIntPipe) id: number): string {
     return this.landingService.deleteLanding(id);
   }
 }
