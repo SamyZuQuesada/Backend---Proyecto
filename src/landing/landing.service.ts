@@ -9,7 +9,6 @@ export class LandingService {
     @InjectRepository(Landing) private landingRepository: Repository<Landing>,
   ) {}
 
-  //leer el landing con los servicios y testimonios
   async getLanding(): Promise<Landing> {
     const landing = await this.landingRepository.findOne({
       relations: ['servicios', 'testimonios'],
